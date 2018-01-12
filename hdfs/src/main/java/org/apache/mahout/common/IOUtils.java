@@ -126,7 +126,7 @@ public final class IOUtils {
     for (Closeable closeable : closeables) {
       try {
         closeable.close();
-      } catch (Throwable thr) {
+      } catch (Exception thr) {
         log.error(thr.getMessage(), thr);
         lastThr = thr;
       }
