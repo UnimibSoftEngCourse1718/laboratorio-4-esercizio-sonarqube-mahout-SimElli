@@ -27,6 +27,9 @@ import org.apache.mahout.math.Vector;
 import com.google.common.base.Function;
 
 public final class BenchmarkRunner {
+	
+  private static final Logger log = LoggerFactory.getLogger(BenchmarkRunner.class);
+	
   private static final int BUCKET_SIZE = 10000;
   private static final Random R = RandomUtils.getRandom();
   private final long maxTimeUsec;
@@ -105,7 +108,7 @@ public final class BenchmarkRunner {
       }
     }
     // print result to prevent hotspot from eliminating deadcode
-    System.err.println("Result = " + result);
+    log.error("Result = " + result);
     return stats;
   }
 }
