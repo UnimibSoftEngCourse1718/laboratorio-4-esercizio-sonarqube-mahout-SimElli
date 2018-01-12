@@ -23,6 +23,8 @@ import java.util.concurrent.TimeUnit;
 import org.apache.mahout.common.RandomUtils;
 import org.apache.mahout.common.TimingStatistics;
 import org.apache.mahout.math.Vector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Function;
 
