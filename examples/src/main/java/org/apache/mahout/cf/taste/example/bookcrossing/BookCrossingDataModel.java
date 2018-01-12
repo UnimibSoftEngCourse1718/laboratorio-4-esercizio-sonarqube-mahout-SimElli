@@ -30,6 +30,8 @@ import com.google.common.io.Closeables;
 import org.apache.mahout.cf.taste.similarity.precompute.example.GroupLensDataModel;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.common.iterator.FileLineIterable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * See <a href="http://www.informatik.uni-freiburg.de/~cziegler/BX/BX-CSV-Dump.zip">download</a> for
@@ -37,6 +39,8 @@ import org.apache.mahout.common.iterator.FileLineIterable;
  */
 public final class BookCrossingDataModel extends FileDataModel {
 
+  private static final Logger log = LoggerFactory.getLogger(BookCrossingDataModel.class);
+  
   private static final Pattern NON_DIGIT_SEMICOLON_PATTERN = Pattern.compile("[^0-9;]");
 
   public BookCrossingDataModel(boolean ignoreRatings) throws IOException {
@@ -58,7 +62,10 @@ public final class BookCrossingDataModel extends FileDataModel {
       throw new FileNotFoundException(originalFile.toString());
     }
     File resultFile = new File(new File(System.getProperty("java.io.tmpdir")), "taste.bookcrossing.txt");
-    resultFile.delete();
+    
+    if (resultFile.delete())
+    	log.info("File deleted");
+    	
     Writer writer = null;
     try {
       writer = new OutputStreamWriter(new FileOutputStream(resultFile), Charsets.UTF_8);
